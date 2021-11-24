@@ -5,14 +5,17 @@ async function handleProfileSignup(firstName, lastName, fileName) {
   const p1 = signUpUser(firstName, lastName);
   const p2 = uploadPhoto(fileName);
 
-  const results = await Promise.allSettled([p1, p2]);
-  const [user, photo] = results;
-  if (photo.status === 'rejected') {
-    photo.value = photo.reason.message;
-    delete photo.reason;
-  }
-  const data = [user, photo];
-  console.log(data);
+  const data = await Promise.allSettled([p1, p2]).then((results) => results.map((result) => {
+    if (result.status !== 'fulfilled') {
+      return {
+        status: 'rejected',
+        value: result.reason.message,
+      };
+    }
+    return result;
+  }));
+
+  Promise.resolve(data);
 }
 
 export default handleProfileSignup;
