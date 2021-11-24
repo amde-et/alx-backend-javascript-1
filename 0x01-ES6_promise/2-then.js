@@ -6,12 +6,11 @@ function handleResponseFromAPI(promise) {
         status: 200,
         body: 'success',
       };
-    },
-    (error) => {
-      console.log('Got a response from the API');
-      return new Error(error);
-    },
-  );
+    }
+  ).catch((error) => {
+    console.log('Got a response from the API');
+    return new Error();
+  });
 }
 
 export default handleResponseFromAPI;
