@@ -8,7 +8,7 @@ export default async function handleProfileSignup(firstName, lastName, fileName)
   }));
   const p2 = await uploadPhoto(fileName).catch((err) => ({
     status: 'rejected',
-    value: err.message,
+    value: err.toString(),
   }));
 
   return Promise.resolve([p1, p2]);
