@@ -1,3 +1,10 @@
 export default function appendToEachArrayValue(array, appendString) {
-  return array.map((val) => `${appendString}${val}`);
+  const arr = [];
+  // eslint-disable-next-line guard-for-in
+  for (const idx in array) {
+    const value = array[idx];
+    arr.push(`${appendString}${value}`);
+  }
+
+  return arr;
 }
