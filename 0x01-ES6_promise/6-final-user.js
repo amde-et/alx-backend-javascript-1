@@ -15,7 +15,7 @@ async function handleProfileSignup(firstName, lastName, fileName) {
     return result;
   }));
 
-  Promise.resolve(data);
+  return Promise.resolve(data);
 }
 
 export default handleProfileSignup;
