@@ -2,9 +2,11 @@ const cleanSet = (set, startString) => {
   const strings = [];
 
   if (startString === '' || typeof startString !== 'string') return '';
-  set.forEach((string) => {
-    if (string.startsWith(startString)) strings.push(string.slice(startString.length));
-  });
+  for (const string of set) {
+    if (string.startsWith(startString)) {
+      strings.push(string.slice(startString.length));
+    }
+  }
   return strings.join('-');
 };
 
