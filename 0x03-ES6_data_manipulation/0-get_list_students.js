@@ -1,4 +1,5 @@
-const getListStudents = () => [{
+const getListStudents = () => [
+  {
     id: 1,
     firstName: 'Guillaume',
     location: 'San Francisco',
