@@ -14,8 +14,7 @@ app.get('/', (_req, res) => {
 
 app.get('/students', (_req, res) => {
   countStudents(fileName).then((data) => {
-    data.unshift('This is the list of our students');
-    res.send(data.join('\n'));
+    res.send(`This is the list of our students\n${data.join('\n')}`);
   }).catch((error) => {
     res.send(`${error.message}`);
   });
