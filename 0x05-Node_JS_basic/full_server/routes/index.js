@@ -4,9 +4,7 @@
 const {
   Router,
 } = require('express');
-const {
-  AppController,
-} = require('../controllers/AppController');
+const AppController = require('../controllers/AppController');
 const StudentsController = require('../controllers/StudentsController');
 
 const router = Router();

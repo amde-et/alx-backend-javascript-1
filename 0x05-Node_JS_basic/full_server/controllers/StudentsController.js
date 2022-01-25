@@ -1,5 +1,5 @@
 /**
- * Contains all the functions that are used as route handlers
+ * Contains all the functions that are used as students route handlers
  */
 const {
   readDatabase,
