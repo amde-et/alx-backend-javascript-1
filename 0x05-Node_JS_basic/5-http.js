@@ -43,14 +43,17 @@ const readData = (data) => {
  * @param {string} database - path to database file
  * @returns promise
  */
-const countStudents = async (database) => {
-  try {
-    const data = await fs.promises.readFile(database, 'utf8');
-    return readData(data);
-  } catch (err) {
-    // When a request is aborted - err is an AbortError
-    throw new Error('Cannot load the database');
-  }
+const countStudents = (database) => {
+  const readFilePromise = new Promise((resolve, reject) => {
+    fs.readFile(database, 'utf8', (error, data) => {
+      if (error) {
+        reject(Error('Cannot load the database'));
+      } else {
+        resolve(readData(data));
+      }
+    });
+  });
+  return readFilePromise;
 };
 
 const port = 1245;
@@ -65,6 +68,7 @@ const app = http.createServer((req, res) => {
       res.end(data.join('\n'));
     }).catch((error) => {
       res.end(`${error}`);
+      throw Error(error.message);
     });
   }
 });

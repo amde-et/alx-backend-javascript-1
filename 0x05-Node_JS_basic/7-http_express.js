@@ -9,10 +9,12 @@ const port = 1245;
 const fileName = process.argv[2];
 
 app.get('/', (req, res) => {
+  req.headers('Content-Type', 'text/plain');
   res.send('Hello Holberton School!');
 });
 
 app.get('/students', (req, res) => {
+  req.headers('Content-Type', 'text/plain');
   countStudents(fileName).then((data) => {
     data.unshift('This is the list of our students');
     res.send(data.join('\n'));
