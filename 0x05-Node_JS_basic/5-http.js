@@ -11,6 +11,7 @@ const readData = (data) => {
   const logs = [];
   const studentsArray = data.trim().split('\n').slice(1);
 
+  logs.push('This is the list of our students');
   const studentInfo = `Number of students: ${studentsArray.length}`;
   logs.push(studentInfo);
 
@@ -60,7 +61,6 @@ const app = http.createServer((req, res) => {
     res.end('Hello Holberton School!');
   } else if (url === '/students') {
     countStudents(fileName).then((data) => {
-      data.unshift('This is the list of our students');
       res.end(data.join('\n'));
     }).catch((error) => {
       res.end(`${error}`);
