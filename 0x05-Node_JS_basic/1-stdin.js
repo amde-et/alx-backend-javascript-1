@@ -3,10 +3,10 @@
  */
 console.log('Welcome to Holberton School, what is your name?');
 
-process.stdin.on('data', (name) => {
+process.stdin.on('readable', (name) => {
   console.log(`Your name is: ${name}`);
 });
 
-process.on('exit', () => {
+process.stdin.on('exit', () => {
   console.log('This important software is now closing');
 });
