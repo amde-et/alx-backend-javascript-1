@@ -4,6 +4,11 @@
 const fs = require('fs');
 const http = require('http');
 
+/**
+ * readData: reads the data and counts the
+ * number of students in each field.
+ * @param {list} data - list of students
+ */
 const readData = (data) => {
   const logs = [];
   const studentsArray = data.trim().split('\n').slice(1);
@@ -34,6 +39,11 @@ const readData = (data) => {
   return logs;
 };
 
+/**
+ * countStudents - Reads the file asynchronously.
+ * @param {string} database - path to database file
+ * @returns promise
+ */
 const countStudents = (database) => {
   const readFilePromise = new Promise((resolve, reject) => {
     fs.readFile(database, 'utf8', (error, data) => {
@@ -51,15 +61,13 @@ const port = 1245;
 const fileName = process.argv[2];
 
 const app = http.createServer((req, res) => {
-  res.setHeader('Content-Type', 'text/plain');
   if (req.url === '/') {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
     countStudents(fileName).then((data) => {
       res.end(data.join('\n'));
     }).catch((error) => {
-      res.end(`${error}`);
-      throw Error(error.message);
+      res.end(`${error.message}`);
     });
   }
 });
