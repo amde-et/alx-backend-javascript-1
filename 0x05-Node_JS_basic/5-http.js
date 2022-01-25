@@ -1,7 +1,9 @@
 /**
  * Create a small HTTP server using the http module.
  */
-const fs = require('fs');
+const {
+  readFile,
+} = require('fs/promises');
 const http = require('http');
 // const countStudents = require('./3-read_file_async');
 
@@ -43,17 +45,14 @@ const readData = (data) => {
  * @param {string} database - path to database file
  * @returns promise
  */
-const countStudents = (database) => {
-  const readFilePromise = new Promise((resolve, reject) => {
-    fs.readFile(database, 'utf8', (error, data) => {
-      if (error) {
-        reject(Error('Cannot load the database'));
-      } else {
-        resolve(readData(data));
-      }
-    });
-  });
-  return readFilePromise;
+const countStudents = async (database) => {
+  try {
+    const data = await readFile(database, 'utf8');
+    return readData(data);
+  } catch (err) {
+    // When a request is aborted - err is an AbortError
+    throw new Error('Cannot load the database');
+  }
 };
 
 const port = 1245;
