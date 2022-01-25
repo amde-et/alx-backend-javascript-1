@@ -1,5 +1,5 @@
 /**
- * Create a more complex HTTP server using the express module.
+ * HTTP server using the express module.
  */
 const express = require('express');
 const countStudents = require('./3-read_file_async');
@@ -17,7 +17,7 @@ app.get('/students', (_req, res) => {
     data.unshift('This is the list of our students');
     res.send(data.join('\n'));
   }).catch((error) => {
-    res.send(error.message);
+    res.send(`${error.message}`);
   });
 });
 
