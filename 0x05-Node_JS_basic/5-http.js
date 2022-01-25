@@ -8,6 +8,7 @@ const port = 1245;
 const fileName = process.argv[2];
 
 const app = http.createServer((req, res) => {
+  res.setHeader('Content-Type', 'text/plain');
   if (req.url === '/') {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
