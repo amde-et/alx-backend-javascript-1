@@ -10,11 +10,11 @@ const fs = require('fs');
  * @param {list} data - list of students
  */
 const readData = (data) => {
-  // const logs = [];
+  const logs = [];
   const studentsArray = data.trim().split('\n').slice(1);
 
   const studentInfo = `Number of students: ${studentsArray.length}`;
-  // logs.push(studentInfo);
+  logs.push(studentInfo);
   console.log(studentInfo);
 
   const students = studentsArray.map((student) => {
@@ -30,12 +30,12 @@ const readData = (data) => {
     ).map((student) => student[0]);
 
     const info = `Number of students in ${category
-    }: ${filteredStudents.length} List: ${filteredStudents.join(', ')}`;
-    // logs.push(info);
+    }: ${filteredStudents.length}. List: ${filteredStudents.join(', ')}`;
+    logs.push(info);
     console.log(info);
   });
 
-  // return logs;
+  return logs;
 };
 
 /**
