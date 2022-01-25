@@ -30,7 +30,7 @@ const countStudents = (database) => {
         return false;
       });
       console.log(`Number of students in ${category
-      }: ${filteredStudents.length} List: ${filteredStudents.join(', ')}`);
+      }: ${filteredStudents.length}. List: ${filteredStudents.join(', ')}`);
     });
   } catch (error) {
     throw new Error('Cannot load the database');

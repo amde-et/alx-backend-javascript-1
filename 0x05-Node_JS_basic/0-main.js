@@ -1,9 +1,3 @@
-const readDatabase = require('./full_server/utils');
+const countStudents = require('./2-read_file');
 
-readDatabase('database.csv')
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+countStudents("database.csv");
