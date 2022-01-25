@@ -5,9 +5,6 @@ const fs = require('fs');
 const http = require('http');
 // const countStudents = require('./3-read_file_async');
 
-const port = 1245;
-const fileName = process.argv[2];
-
 /**
  * readData: reads the data and counts the
  * number of students in each field.
@@ -59,19 +56,16 @@ const countStudents = (database) => {
   return readFilePromise;
 };
 
+const port = 1245;
+const fileName = process.argv[2];
+
 const app = http.createServer((req, res) => {
-  res.statusCode = 200;
   res.setHeader('Content-Type', 'text/plain');
   if (req.url === '/') {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
     countStudents(fileName).then((data) => {
-      res.write(`${data[0]}\n`);
-      res.write(`${data[1]}\n`);
-      res.write(`${data[2]}\n`);
-      res.write(`${data[3]}`);
-      res.end();
-      // res.end(data.join('\n'));
+      res.end(data.join('\n'));
     }).catch((error) => {
       res.end(`${error}`);
       throw Error(error.message);
