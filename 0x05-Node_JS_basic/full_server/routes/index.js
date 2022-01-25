@@ -9,9 +9,7 @@ const AppController = require('../controllers/AppController');
 
 const router = Router();
 
-router.get('/', (req, res) => {
-  AppController.getHomepage(req, res);
-});
+router.get('/', AppController.getHomepage);
 // router.get('/students', StudentsController.getStudents());
 // router.get('/students/:major', StudentsController.getAllStudentsByMajor());
 
