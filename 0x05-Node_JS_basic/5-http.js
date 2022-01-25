@@ -1,9 +1,5 @@
-/**
- * Create a small HTTP server using the http module.
- */
 const fs = require('fs');
 const http = require('http');
-// const countStudents = require('./3-read_file_async');
 
 /**
  * readData: reads the data and counts the
@@ -65,9 +61,7 @@ const app = http.createServer((req, res) => {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
     countStudents(fileName).then((data) => {
-      res.write(data.join('\n'));
-      res.end();
-      // res.end(data.join('\n'));
+      res.end(data.join('\n'));
     }).catch((error) => {
       res.end(`${error}`);
       throw Error(error.message);
