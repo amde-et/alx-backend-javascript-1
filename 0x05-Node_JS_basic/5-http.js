@@ -17,7 +17,7 @@ const path = {
       data.unshift('This is the list of our students');
       res.end(data.join('\n'));
     }).catch((error) => {
-      res.end(error);
+      res.end(`${error}`);
     });
   },
 };
