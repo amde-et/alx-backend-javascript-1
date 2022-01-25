@@ -45,9 +45,12 @@ const readData = (data) => {
  */
 const countStudents = (database) => {
   const readFilePromise = new Promise((resolve, reject) => {
+    if (!database) {
+      reject(new Error('Cannot load the database'));
+    }
     fs.readFile(database, 'utf8', (error, data) => {
       if (error) {
-        reject(Error('Cannot load the database'));
+        reject(new Error('Cannot load the database'));
       } else {
         resolve(readData(data));
       }
