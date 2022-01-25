@@ -66,8 +66,8 @@ const app = http.createServer((req, res) => {
   } else if (req.url === '/students') {
     countStudents(fileName).then((data) => {
       res.end(data.join('\n'));
-    }).catch((error) => {
-      res.end(`${error.message}`);
+    }).catch(() => {
+      res.end('Error: Cannot load the database');
     });
   }
 });
