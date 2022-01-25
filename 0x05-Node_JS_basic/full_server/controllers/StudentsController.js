@@ -10,10 +10,11 @@ class StudentsController {
     readDatabase(fileName).then((data) => {
       const logs = [];
       logs.push('This is the list of our students');
+      console.log(data);
       for (const [k, v] of Object.entries(data)) {
         logs.push(`Number of students in ${k}: ${v.length} List: ${v.join(', ')}`);
       }
-      res.status(200).send(logs.join('\n'));
+      res.status(200).send(logs.join('<br>'));
     }).catch(() => {
       res.status(500).send('Cannot load the database');
     });
