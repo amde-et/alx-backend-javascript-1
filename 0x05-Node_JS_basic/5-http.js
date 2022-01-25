@@ -1,3 +1,6 @@
+/**
+ * Create a small HTTP server using the http module.
+ */
 const fs = require('fs');
 const http = require('http');
 
@@ -19,7 +22,9 @@ const readData = (data) => {
     return fields;
   });
 
-  const categories = [...new Set(students.map((student) => student[student.length - 1]))];
+  const categories = [...new Set(students.map(
+    (student) => student[student.length - 1],
+  ))];
 
   categories.forEach((category) => {
     const filteredStudents = students.filter(
