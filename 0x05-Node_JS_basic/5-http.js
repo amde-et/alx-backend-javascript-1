@@ -48,7 +48,7 @@ const countStudents = (database) => {
   const readFilePromise = new Promise((resolve, reject) => {
     fs.readFile(database, 'utf8', (error, data) => {
       if (error) {
-        reject(new Error('Cannot load the database'));
+        reject(Error('Cannot load the database'));
       } else {
         resolve(readData(data));
       }
@@ -67,6 +67,7 @@ const app = http.createServer((req, res) => {
     countStudents(fileName).then((data) => {
       res.end(data.join('\n'));
     }).catch((error) => {
+      res.statusCode = 500;
       res.end(`${error}`);
     });
   }
