@@ -1,9 +1,7 @@
 /**
  * Create a small HTTP server using the http module.
  */
-const {
-  readFile,
-} = require('fs/promises');
+const fs = require('fs');
 const http = require('http');
 // const countStudents = require('./3-read_file_async');
 
@@ -47,7 +45,7 @@ const readData = (data) => {
  */
 const countStudents = async (database) => {
   try {
-    const data = await readFile(database, 'utf8');
+    const data = await fs.promises.readFile(database, 'utf8');
     return readData(data);
   } catch (err) {
     // When a request is aborted - err is an AbortError
