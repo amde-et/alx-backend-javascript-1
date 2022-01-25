@@ -61,13 +61,16 @@ const app = http.createServer((req, res) => {
     res.end('Hello Holberton School!');
   } else if (url === '/students') {
     countStudents(fileName).then((data) => {
-      res.end(data.join('\n'));
+      data.forEach((log) => {
+        res.write(`${log}\n`);
+      });
+      res.end();
     }).catch((error) => {
       res.end(`${error}`);
     });
   }
 });
 
-app.listen(port);
+app.listen(port, '127.0.0.1');
 
 module.exports = app;
