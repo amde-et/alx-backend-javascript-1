@@ -54,23 +54,19 @@ const countStudents = (database) => {
 };
 
 const app = http.createServer((req, res) => {
-  const {
-    url,
-  } = req;
-  if (url === '/') {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  if (req.url === '/') {
     res.end('Hello Holberton School!');
-  } else if (url === '/students') {
+  } else if (req.url === '/students') {
     countStudents(fileName).then((data) => {
-      data.forEach((log) => {
-        res.write(`${log}\n`);
-      });
-      res.end();
+      res.end(data.join('\n'));
     }).catch((error) => {
       res.end(`${error}`);
     });
   }
 });
 
-app.listen(port, '127.0.0.1');
+app.listen(port);
 
 module.exports = app;
