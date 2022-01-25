@@ -13,7 +13,7 @@ class StudentsController {
       for (const [k, v] of Object.entries(data)) {
         logs.push(`Number of students in ${k}: ${v.length} List: ${v.join(', ')}`);
       }
-      res.status(200).send(logs.join('<br>'));
+      res.status(200).send(logs.join('\n'));
     }).catch(() => {
       res.status(500).send('Cannot load the database');
     });
