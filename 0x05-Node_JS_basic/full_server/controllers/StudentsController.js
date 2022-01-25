@@ -1,9 +1,7 @@
 /**
  * Contains all the functions that are used as students route handlers
  */
-const {
-  readDatabase,
-} = require('../utils');
+const readDatabase = require('../utils');
 
 const fileName = process.argv[2];
 
