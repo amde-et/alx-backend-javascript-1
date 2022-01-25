@@ -22,7 +22,7 @@ const readDatabase = (filePath) => {
 
         categories.forEach((category) => {
           fields[category] = students.filter(
-            (student) => student.at(-1) === category,
+            (student) => student[student.length - 1] === category,
           ).map((student) => student.at(0));
         });
 
