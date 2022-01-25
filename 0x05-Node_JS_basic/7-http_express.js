@@ -5,7 +5,6 @@ const express = require('express');
 const countStudents = require('./3-read_file_async');
 
 const app = express();
-const port = 1245;
 const fileName = process.argv[2];
 
 app.get('/', (_req, res) => {
@@ -14,12 +13,13 @@ app.get('/', (_req, res) => {
 
 app.get('/students', (_req, res) => {
   countStudents(fileName).then((data) => {
-    res.send(`This is the list of our students\n${data.join('\n')}`);
+    data.unshift('This is the list of our students');
+    res.send(data.join('\n'));
   }).catch((error) => {
     res.send(`${error.message}`);
   });
 });
 
-app.listen(port);
+app.listen(1245);
 
 module.exports = app;
