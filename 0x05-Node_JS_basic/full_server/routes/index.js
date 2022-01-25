@@ -4,13 +4,15 @@
 const {
   Router,
 } = require('express');
-const home = require('../controllers/AppController');
-const students = require('../controllers/StudentsController');
+const {
+  AppController,
+} = require('../controllers/AppController');
+const StudentsController = require('../controllers/StudentsController');
 
 const router = Router();
 
-router.get('/', home.getHomepage);
-router.get('/students', students.getStudents);
-router.get('/students/:major', students.getAllStudentsByMajor);
+router.get('/', AppController.getHomepage);
+router.get('/students', StudentsController.getStudents);
+router.get('/students/:major', StudentsController.getAllStudentsByMajor);
 
 module.exports = router;
