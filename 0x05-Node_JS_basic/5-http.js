@@ -14,8 +14,9 @@ const app = http.createServer((req, res) => {
     countStudents(fileName).then((data) => {
       data.unshift('This is the list of our students');
       res.end(data.join('\n'));
-    }).catch((error) => {
-      res.end(`${error}`);
+    }).catch(() => {
+      res.end('Error: Cannot load the database');
+      throw new Error('Cannot load the database');
     });
   }
 });
