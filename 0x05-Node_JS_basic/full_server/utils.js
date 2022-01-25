@@ -16,7 +16,7 @@ const readDatabase = (filePath) => {
           return fields;
         });
 
-        const categories = [...new Set(students.map((student) => student.at(-1)))];
+        const categories = [...new Set(students.map((student) => student[student.length - 1]))];
 
         const fields = {};
 
