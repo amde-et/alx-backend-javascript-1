@@ -12,12 +12,8 @@ const app = http.createServer((req, res) => {
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
     countStudents(fileName).then((data) => {
-      res.write('This is the list of our students\n');
-      res.write(`${data[0]}\n`);
-      res.write(`${data[1]}\n`);
-      res.write(`${data[2]}`);
-      res.end();
-      // res.end(data.join('\n'));
+      data.unshift('This is the list of our students');
+      res.end(data.join('\n'));
     }).catch((error) => {
       res.end(`${error}`);
       throw new Error(error.message);
