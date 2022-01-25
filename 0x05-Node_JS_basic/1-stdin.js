@@ -7,6 +7,6 @@ process.stdin.on('readable', (name) => {
   console.log(`Your name is: ${name}`);
 });
 
-process.stdin.on('exit', () => {
+process.stdin.on('end', () => {
   console.log('This important software is now closing');
 });
