@@ -16,21 +16,14 @@ const readDatabase = (filePath) => {
           return fields;
         });
 
-        const categories = [...new Set(students.map((student) => student[-1]))];
-        console.log(categories);
+        const categories = [...new Set(students.map((student) => student.at(-1)))];
 
         const fields = {};
 
         categories.forEach((category) => {
-          const filteredStudents = [];
-          students.filter((student) => {
-            if (student[-1] === category) {
-              filteredStudents.push(student[0]);
-              return student;
-            }
-            return false;
-          });
-          fields[category] = filteredStudents;
+          fields[category] = students.filter(
+            (student) => student.at(-1) === category,
+          ).map((student) => student.at(0));
         });
 
         resolve(fields);
