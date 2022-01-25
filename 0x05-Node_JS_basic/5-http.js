@@ -68,7 +68,6 @@ const app = http.createServer((req, res) => {
       res.end(data.join('\n'));
     }).catch((error) => {
       res.end(`${error}`);
-      throw Error(error.message);
     });
   }
 });
