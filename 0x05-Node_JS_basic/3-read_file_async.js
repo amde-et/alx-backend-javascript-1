@@ -50,7 +50,7 @@ const countStudents = (database) => {
     }
     fs.readFile(database, 'utf8', (error, data) => {
       if (error) {
-        reject(new Error('Cannot load the database'));
+        reject(Error('Cannot load the database'));
       } else {
         resolve(readData(data));
       }
