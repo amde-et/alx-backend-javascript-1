@@ -1,10 +1,6 @@
-/**
- * Create a small HTTP server using the http module.
- */
 const http = require('http');
 const countStudents = require('./3-read_file_async');
 
-const hostname = '127.0.0.1';
 const port = 1245;
 const fileName = process.argv[2];
 
@@ -21,6 +17,6 @@ const app = http.createServer((req, res) => {
   }
 });
 
-app.listen(port, hostname);
+app.listen(port);
 
 module.exports = app;
