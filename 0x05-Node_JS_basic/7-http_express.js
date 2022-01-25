@@ -8,13 +8,11 @@ const app = express();
 const port = 1245;
 const fileName = process.argv[2];
 
-app.get('/', (req, res) => {
-  res.headers('Content-Type', 'text/plain');
+app.get('/', (_req, res) => {
   res.send('Hello Holberton School!');
 });
 
-app.get('/students', (req, res) => {
-  res.header('Content-Type', 'text/plain');
+app.get('/students', (_req, res) => {
   countStudents(fileName).then((data) => {
     data.unshift('This is the list of our students');
     res.send(data.join('\n'));
