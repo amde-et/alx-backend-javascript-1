@@ -15,29 +15,22 @@ const readData = (data) => {
 
   logs.push(`Number of students: ${studentsArray.length}`);
   console.log(`Number of students: ${studentsArray.length}`);
-  let categories = studentsArray.map((student) => {
+
+  const students = studentsArray.map((student) => {
     const fields = student.replace('\r', '').split(',');
-    return fields.at(-1);
+    return fields;
   });
-  // Retrieve unique categories
-  categories = [...new Set(categories)];
+
+  const categories = [...new Set(students.map((student) => student[student.length - 1]))];
 
   categories.forEach((category) => {
-    const filteredStudents = [];
-    studentsArray.filter((student) => {
-      // Retrieves student with category
-      const studentFields = student.replace('\r', '').split(',');
-      if (studentFields.at(-1) === category) {
-        // Push names of students with category
-        filteredStudents.push(studentFields[0]);
-        return studentFields;
-      }
-      return false;
-    });
+    const filteredStudents = students.filter(
+      (student) => student[student.length - 1] === category,
+    ).map((student) => student[0]);
     logs.push(`Number of students in ${category
     }: ${filteredStudents.length} List: ${filteredStudents.join(', ')}`);
     console.log(`Number of students in ${category
-    }: ${filteredStudents.length} List: ${filteredStudents.join(', ')}`);
+    }: ${filteredStudents.length}. List: ${filteredStudents.join(', ')}`);
   });
 
   return logs;
