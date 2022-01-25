@@ -13,8 +13,9 @@ const readData = (data) => {
   const logs = [];
   const studentsArray = data.trim().split('\n').slice(1);
 
-  logs.push(`Number of students: ${studentsArray.length}`);
-  console.log(`Number of students: ${studentsArray.length}`);
+  const studentInfo = `Number of students: ${studentsArray.length}`;
+  logs.push(studentInfo);
+  console.log(studentInfo);
 
   const students = studentsArray.map((student) => {
     const fields = student.replace('\r', '').split(',');
@@ -27,10 +28,11 @@ const readData = (data) => {
     const filteredStudents = students.filter(
       (student) => student[student.length - 1] === category,
     ).map((student) => student[0]);
-    logs.push(`Number of students in ${category
-    }: ${filteredStudents.length} List: ${filteredStudents.join(', ')}`);
-    console.log(`Number of students in ${category
-    }: ${filteredStudents.length}. List: ${filteredStudents.join(', ')}`);
+
+    const info = `Number of students in ${category
+    }: ${filteredStudents.length} List: ${filteredStudents.join(', ')}`;
+    logs.push(info);
+    console.log(info);
   });
 
   return logs;
