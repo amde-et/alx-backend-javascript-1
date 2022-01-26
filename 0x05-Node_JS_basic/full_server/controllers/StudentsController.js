@@ -1,9 +1,7 @@
 /**
  * Contains all the functions that are used as students route handlers
  */
-const {
-  argv,
-} = require('process');
+const argv = require('process');
 const readDatabase = require('../utils');
 
 class StudentsController {
