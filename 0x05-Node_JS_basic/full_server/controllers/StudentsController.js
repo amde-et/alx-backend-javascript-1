@@ -19,17 +19,17 @@ class StudentsController {
     });
   }
 
-  static getAllStudentsByMajor(req, res) {
-    const field = req.params.major;
+  static getAllStudentsByMajor(request, response) {
+    const field = request.params.major;
     const acceptedMajors = ['CS', 'SWE'];
     if (!acceptedMajors.includes(field)) {
-      res.status(500).send('Major parameter must be CS or SWE');
+      response.status(500).send('Major parameter must be CS or SWE');
     }
+    response.set('Content-Type', 'text/plain');
     readDatabase(fileName).then((data) => {
-      res.status(200);
-      res.end(`List: ${data[field].join(', ')}`);
+      response.status(200).send(`List: ${data[field].join(', ')}`);
     }).catch(() => {
-      res.status(500).send('Cannot load the database');
+      response.status(500).send('Cannot load the database');
     });
   }
 }
