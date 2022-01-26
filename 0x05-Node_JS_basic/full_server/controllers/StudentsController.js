@@ -7,15 +7,16 @@ const fileName = process.argv[2];
 
 class StudentsController {
   static getAllStudents(_req, res) {
-    res.write('This is the list of our students\n');
+    const logs = ['This is the list of our students'];
+    res.status(200);
     readDatabase(fileName).then((data) => {
       for (const [k, v] of Object.entries(data)) {
-        res.write(`Number of students in ${k
-        }: ${v.length}. List: ${v.join(', ')}\n`);
+        logs.push(`Number of students in ${k
+        }: ${v.length}. List: ${v.join(', ')}`);
       }
-      res.status(200).end();
+      res.send(logs.join('\n'));
     }).catch(() => {
-      res.status(500).end('Cannot load the database');
+      res.status(500).send('Cannot load the database');
     });
   }
 
