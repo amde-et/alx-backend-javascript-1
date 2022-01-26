@@ -6,8 +6,9 @@ const readDatabase = require('../utils');
 const fileName = process.argv[2];
 
 class StudentsController {
-  static getAllStudents(req, res) {
+  static getAllStudents(_req, res) {
     readDatabase(fileName).then((data) => {
+      console.log(fileName);
       const logs = [];
       logs.push('This is the list of our students');
       for (const [k, v] of Object.entries(data)) {
