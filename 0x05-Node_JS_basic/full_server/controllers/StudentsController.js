@@ -6,16 +6,16 @@ const readDatabase = require('../utils');
 const fileName = process.argv[2];
 
 class StudentsController {
-  static getAllStudents(_req, res) {
+  static getAllStudents(request, response) {
     readDatabase(fileName).then((data) => {
-      res.status(200);
       const logs = ['This is the list of our students'];
       for (const [k, v] of Object.entries(data)) {
-        logs.push(`Number of students in ${k}: ${v.length}. List: ${v.join(', ')}`);
+        logs.push(`Number of students in ${k}: ${v.length
+        }. List: ${v.join(', ')}`);
       }
-      res.send(logs.join('\n'));
+      response.status(200).send(logs.join('\n'));
     }).catch(() => {
-      res.status(500).send('Cannot load the database');
+      response.status(500).send('Cannot load the database');
     });
   }
 
