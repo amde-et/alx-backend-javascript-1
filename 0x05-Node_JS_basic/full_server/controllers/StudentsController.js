@@ -26,7 +26,8 @@ class StudentsController {
       res.status(500).send('Major parameter must be CS or SWE');
     }
     readDatabase(fileName).then((data) => {
-      res.status(200).send(`List: ${data[field].join(', ')}\n`);
+      res.status(200);
+      res.end(`List: ${data[field].join(', ')}`);
     }).catch(() => {
       res.status(500).send('Cannot load the database');
     });
