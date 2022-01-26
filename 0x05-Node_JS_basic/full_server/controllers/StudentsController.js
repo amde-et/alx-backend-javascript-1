@@ -9,9 +9,11 @@ class StudentsController {
   static getAllStudents(_req, res) {
     const logs = ['This is the list of our students'];
     readDatabase(fileName).then((data) => {
-      for (const [k, v] of Object.entries(data)) {
-        logs.push(`Number of students in ${k
-        }: ${v.length}. List: ${v.join(', ')}`);
+      for (const major in data) {
+        if (major in data) {
+          logs.push(`Number of students in ${major
+          }: ${data[major].length}. List: ${data[major].join(', ')}`);
+        }
       }
       res.status(200).send(logs.join('\n'));
     }).catch(() => {
