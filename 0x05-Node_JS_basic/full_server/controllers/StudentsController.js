@@ -7,12 +7,11 @@ const fileName = process.argv[2];
 
 class StudentsController {
   static getAllStudents(_req, res) {
-    const logs = ['This is the list of our students'];
-    res.status(200);
     readDatabase(fileName).then((data) => {
+      res.status(200);
+      const logs = ['This is the list of our students'];
       for (const [k, v] of Object.entries(data)) {
-        logs.push(`Number of students in ${k
-        }: ${v.length}. List: ${v.join(', ')}`);
+        logs.push(`Number of students in ${k}: ${v.length}. List: ${v.join(', ')}`);
       }
       res.send(logs.join('\n'));
     }).catch(() => {
