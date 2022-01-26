@@ -21,12 +21,12 @@ class StudentsController {
 
   static getAllStudentsByMajor(req, res) {
     const field = req.params.major;
+    const acceptedMajors = ['CS', 'SWE'];
+    if (!acceptedMajors.includes(field)) {
+      res.status(500).send('Major parameter must be CS or SWE');
+    }
     readDatabase(fileName).then((data) => {
-      if (field !== 'CS' || field !== 'SWE') {
-        res.status(200).send(`List: ${data[field].join(', ')}`);
-      } else {
-        res.status(500).send('Major parameter must be CS or SWE');
-      }
+      res.status(200).send(`List: ${data[field].join(', ')}`);
     }).catch(() => {
       res.status(500).send('Cannot load the database');
     });
