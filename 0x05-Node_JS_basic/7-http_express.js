@@ -17,7 +17,7 @@ app.get('/students', (_req, res) => {
     data.unshift('This is the list of our students');
     res.send(data.join('\n'));
   }).catch((error) => {
-    res.send(`${error.message}`);
+    res.send(`This is the list of our students\n${error.message}`);
   });
 });
 
