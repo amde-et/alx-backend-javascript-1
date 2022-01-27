@@ -7,7 +7,7 @@ const expect = chai.expect;
 
 describe('sendPaymentRequestToApi', () => {
   beforeEach(() => {
-    Utils.calculateNumber = sinon.spy(Utils.calculateNumber);
+    sinon.spy(Utils, 'calculateNumber');
   });
 
   it('should be called with arguments', () => {
