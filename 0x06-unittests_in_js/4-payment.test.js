@@ -6,7 +6,7 @@ const sendPaymentRequestToApi = require('./4-payment');
 const expect = chai.expect;
 
 describe('sendPaymentRequestToApi', () => {
-  let apiStub = sinon.stub(Utils, 'calculateNumber').returns(10);;
+  let apiStub = sinon.stub(Utils, 'calculateNumber').returns(10);
 
   it('should call calculateNumber with the correct parameters', () => {
     const totalAmount = 100;
