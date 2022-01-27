@@ -35,5 +35,10 @@ describe('sendPaymentRequestToApi', () => {
 
   afterEach(() => {
     sinon.restore();
+    sinon.spy(console, 'log').restore();
+  });
+
+  after(() => {
+    apiStub.restore();
   });
 });
