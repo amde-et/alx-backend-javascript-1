@@ -6,10 +6,11 @@ const sendPaymentRequestToApi = require('./4-payment');
 const expect = chai.expect;
 
 describe('sendPaymentRequestToApi', () => {
+  let apiStub = sinon.stub(Utils, 'calculateNumber').returns(10);;
+
   it('should call calculateNumber with the correct parameters', () => {
     const totalAmount = 100;
     const totalShipping = 10;
-    const apiStub = sinon.stub(Utils, 'calculateNumber').returns(10);
 
     sendPaymentRequestToApi(totalAmount, totalShipping);
     expect(apiStub.calledWith('SUM', totalAmount, totalShipping)).to.be.true;
@@ -18,7 +19,6 @@ describe('sendPaymentRequestToApi', () => {
   it('should call calculateNumber once', () => {
     const totalAmount = 100;
     const totalShipping = 10;
-    const apiStub = sinon.stub(Utils, 'calculateNumber').returns(10);
 
     sendPaymentRequestToApi(totalAmount, totalShipping);
     expect(apiStub.calledOnce).to.be.true;
@@ -27,11 +27,10 @@ describe('sendPaymentRequestToApi', () => {
   it('should call console.log with correct parameters', () => {
     const totalAmount = 100;
     const totalShipping = 10;
-    sinon.spy(console, 'log');
-    sinon.stub(Utils, 'calculateNumber').returns(10);
 
+    sinon.spy(console, 'log');
     sendPaymentRequestToApi(totalAmount, totalShipping);
-    expect(console.log.calledWith('The total is: 10')).to.be.true;
+    expect(console.log.calledWith('The total is: 110')).to.be.true;
   });
 
   afterEach(() => {
