@@ -1,6 +1,4 @@
 const {
-
-
   expect
 } = require('chai');
 
