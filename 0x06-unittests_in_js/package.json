@@ -2,7 +2,7 @@
   "name": "testing",
   "version": "0.0.0",
   "scripts": {
-    "test": "mocha"
+    "test": "./node_modules/mocha/bin/mocha"
   },
   "devDependencies": {
     "chai": "^4.3.6",
